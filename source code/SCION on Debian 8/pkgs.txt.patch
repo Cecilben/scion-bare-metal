@@ -1,0 +1,24 @@
+diff --git a/env/debian/pkgs.txt b/env/debian/pkgs.txt
+index c961d2a..814e0b5 100644
+--- a/env/debian/pkgs.txt
++++ b/env/debian/pkgs.txt
+@@ -6,7 +6,6 @@ clang
+ curl
+ dnsutils
+ file
+-flake8
+ g++
+ gcc
+ git
+@@ -31,11 +30,8 @@ python-wheel
+ python3-coverage
+ python3-dev
+ python3-kazoo
+-python3-lz4
+ python3-minimal
+-python3-nacl
+ python3-nose
+-python3-nose-cov
+ python3-openssl
+ python3-pip
+ python3-pygments

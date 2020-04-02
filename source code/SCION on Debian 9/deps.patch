@@ -1,0 +1,56 @@
+diff --git a/env/debian/pkgs.txt b/env/debian/pkgs.txt
+index 2c660dee..ae038027 100644
+--- a/env/debian/pkgs.txt
++++ b/env/debian/pkgs.txt
+@@ -37,8 +37,6 @@ python3-lz4
+ python3-minimal
+ python3-nacl
+ python3-nose
+-python3-nose-cov
+-python3-openssl
+ python3-pip
+ python3-pygments
+ python3-setuptools
+diff --git a/env/pip3/requirements.txt b/env/pip3/requirements.txt
+index 1cf18400..6425d031 100644
+--- a/env/pip3/requirements.txt
++++ b/env/pip3/requirements.txt
+@@ -5,7 +5,7 @@ PyDbLite==3.0.4 --hash=sha256:79ed97d17b5954c6fa8927d9f36033cb4486d1304005057d50
+ # sphinxcontrib-napoleon: licenses/sphinxcontrib-napoleon
+ sphinxcontrib-napoleon==0.5.3 --hash=sha256:a809ab437a5617442ae4f919e50a3f953faff1730e9234bcc502fdf594bbbfbb # Direct dependency
+ # cryptography: licenses/cryptography
+-cryptography==1.8.1 --hash=sha256:323524312bb467565ebca7e50c8ae5e9674e544951d28a2904a50012a8828190 # Direct dependency
++cryptography==2.5 --hash=sha256:522fdb2809603ee97a4d0ef2f8d617bc791eb483313ba307cb9c0a773e5e5695 # Direct dependency
+ # pockets: licenses/BSD-3-Clause
+ pockets==0.3 --hash=sha256:dc870d57992cebaf4bb9dabdad55972ef915429521142af77f6a1efb9e3646de
+ # six: licenses/MIT
+@@ -32,3 +32,14 @@ prometheus-client==0.0.19 --hash=sha256:ce4ddcb89a870ee771ca5427df123029bf5344ea
+ pypacker==4.1 --hash=sha256:05bc5c873cfef620ce8b07df4aa286ea199e328b5b1eabd0b10aa0bb699c464f # Direct dependency
+ # toml: licenses/MIT
+ toml==0.9.4 --hash=sha256:8e86bd6ce8cc11b9620cb637466453d94f5d57ad86f17e98a98d1f73e3baab2d # Direct dependency
++cov-core==1.15.0 \
++    --hash=sha256:4a14c67d520fda9d42b0da6134638578caae1d374b9bb462d8de00587dba764c
++coverage==3.7.1 \
++    --hash=sha256:d1aea1c4aa61b8366d6a42dd3650622fbf9c634ed24eaf7f379c8b970e5ed44e
++nose==1.3.7 \
++    --hash=sha256:9ff7c6cc443f8c51994b34a667bbcf45afd6d945be7477b52e97516fd17c53ac \
++    --hash=sha256:f1bffef9cbc82628f6e7d7b40d7e255aefaa1adb6a1b1d26c69a8b79e6208a98
++nose-cov==1.6 \
++    --hash=sha256:8bec0335598f1cc69e3262cc50d7678c1a6010fa44625ce343c4ec1500774412
++pyOpenSSL===19.0.0 \
++    --hash=sha256:c727930ad54b10fc157015014b666f2d8b41f70c0d03e83ab67624fd3dd5d1e6
+diff --git a/env/zlog/deps b/env/zlog/deps
+index 84d2f8d4..3cf2bf84 100755
+--- a/env/zlog/deps
++++ b/env/zlog/deps
+@@ -10,6 +10,10 @@ BASE=$(dirname "$0")
+ tmpdir=$(mktemp -d /tmp/zlog.XXXXXXX)
+ cd "${tmpdir:?}"
+ curl -L $CURL_PARAM https://github.com/HardySimpson/zlog/archive/1.2.12.tar.gz | tar xzf - --strip-components=1
++echo '35c35
++< WARNINGS=-Wall -Werror -Wstrict-prototypes -fwrapv
++---
++> WARNINGS=-Wall -Wstrict-prototypes -fwrapv' | patch src/makefile
+ make -sj6
+ echo "ldconfig" >> postinstall-pak
+ echo "ldconfig" >> postremove-pak
